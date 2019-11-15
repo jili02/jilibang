@@ -16,4 +16,4 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 ##本项目的技术栈
-https://github.com/jili02/jilibang/blob/master/lib/images/%E8%B7%A8%E5%B9%B3%E5%8F%B0APP%E6%8A%80%E6%9C%AF%E6%A0%882019.png
+![本项目的技术栈](https://github.com/jili02/jilibang/blob/master/lib/images/%E8%B7%A8%E5%B9%B3%E5%8F%B0APP%E6%8A%80%E6%9C%AF%E6%A0%882019.png)

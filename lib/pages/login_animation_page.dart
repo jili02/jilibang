@@ -7,7 +7,7 @@ import 'home.dart';
 import '../utils/data_utils.dart';
 import '../model/user.dart';
 
-// 带动画的登录界面
+// 增加带动画的登录界面
 // https://github.com/NearHuscarl/flutter_login
 
 class LoginAnimationPage extends StatelessWidget {

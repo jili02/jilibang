@@ -36,7 +36,8 @@ dependencies:
   data_tables: ^1.0.1
   json_table: ^1.2.0
   intl: ^0.16.0
-
+# 使用带动画的开源登录界面
+  flutter_login: ^1.0.4
 
 dev_dependencies:
   flutter_test:

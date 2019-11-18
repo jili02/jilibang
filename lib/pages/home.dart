@@ -4,6 +4,7 @@ import '../pages/supplier_page.dart';
 import '../pages/product_page.dart';
 import '../pages/login_page.dart';
 import '../pages/datagrid_page.dart';
+import 'login_animation_page.dart';
 
 //系统主要界面结构
 //主导航，索引
@@ -139,7 +140,7 @@ Drawer _drawer(BuildContext context) {
           ),
           onTap: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return LoginPage();
+              return LoginAnimationPage();
             }));
           },
         ),

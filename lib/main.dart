@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './model/user.dart';
 import './pages/login_page.dart';
+import './pages/login_animation_page.dart';
 
 import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
@@ -51,9 +52,10 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner:false,
-      home:Scaffold(
-        body: LoginPage(),
-      ),
+      home: LoginAnimationPage(),
+//      home:Scaffold(
+//        body: LoginPage(),
+//      ),
 
     );
   }

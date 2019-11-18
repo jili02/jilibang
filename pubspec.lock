@@ -86,7 +86,7 @@ packages:
     source: hosted
     version: "2.2.2"
   flushbar:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flushbar
       url: "https://pub.flutter-io.cn"
@@ -97,13 +97,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_login:
-    dependency: "direct main"
-    description:
-      name: flutter_login
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.0.4"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -117,7 +110,7 @@ packages:
     source: hosted
     version: "3.1.3"
   font_awesome_flutter:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: font_awesome_flutter
       url: "https://pub.flutter-io.cn"
@@ -208,7 +201,7 @@ packages:
     source: hosted
     version: "2.2.1"
   provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: provider
       url: "https://pub.flutter-io.cn"
@@ -269,7 +262,7 @@ packages:
     source: hosted
     version: "0.2.5"
   transformer_page_view:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: transformer_page_view
       url: "https://pub.flutter-io.cn"

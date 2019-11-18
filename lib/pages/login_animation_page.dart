@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 
-import 'package:flutter_login/flutter_login.dart';
+//import 'package:flutter_login/flutter_login.dart';
+import '../third_part/flutter_login/lib/flutter_login.dart';
 
 import 'home.dart';
 import '../utils/data_utils.dart';
@@ -20,8 +21,7 @@ class LoginAnimationPage extends StatelessWidget {
         'user_name': data.name,
         'user_psw_hash': data.password,
         'token': ''
-      }).then((userResult) {
-//      runtimeType获取变量的类型
+      }).then((userResult) {//      runtimeType获取变量的类型
         if (userResult.runtimeType == UserInformation) {
           return null;
         } else

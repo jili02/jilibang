@@ -7,6 +7,21 @@ import '../model/version.dart';
 import 'package:package_info/package_info.dart';
 
 class DataUtils {
+//  用户注册
+  static Future RegUser(Map<String,dynamic> params) async {
+        print('RegUser============='+params['user_name']);
+        print('RegUser============='+params['user_psw_hash']);
+
+    var response = await NetUtils.post(Api.REG_USER, params);
+    try {
+      if (response['success']) { return null;} else {return response['message'];}
+
+    } catch (err) {
+      return response['message'];
+    }
+  }
+
+
   // 登陆获取用户信息
   static Future doLogin(Map<String, String> params) async {
 //    print('doLogin============='+Api.DO_LOGIN);

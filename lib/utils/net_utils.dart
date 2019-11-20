@@ -1,15 +1,18 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 
 Map<String, dynamic> optHeader = {
-  'accept-language': 'zh-cn',
-  'content-type': 'application/json'
+//  HttpHeaders.userAgentHeader: 'dio',
+//  HttpHeaders.acceptCharsetHeader
+//  'content-type': 'application/json;charset=UTF-8',
+//  'Accept': 'application/json',
 };
 
-var dio = new Dio(BaseOptions(connectTimeout: 30000, headers: optHeader));
+var dio = new Dio(BaseOptions(connectTimeout: 30000));
 
 class NetUtils {
   static Future get(String url, [Map<String, dynamic> params]) async {
@@ -18,7 +21,10 @@ class NetUtils {
     String documentsPath = documentsDir.path;
     var dir = new Directory("$documentsPath/cookies");
     await dir.create();
+
     dio.interceptors.add(CookieManager(PersistCookieJar(dir: dir.path)));
+//    dio.interceptors.add(PersistCookieJar(dir: dir.path));
+
     if (params != null) {
       response = await dio.get(url, queryParameters: params);
     } else {
@@ -35,7 +41,11 @@ class NetUtils {
     String documentsPath = documentsDir.path;
     var dir = new Directory("$documentsPath/cookies");
     await dir.create();
-    dio.interceptors.add(CookieManager(PersistCookieJar(dir: dir.path)));
+//    dio.interceptors.add(CookieManager(PersistCookieJar(dir: dir.path)));
+    print(url);
+    print(params['user_name'].toString());
+    print(params['user_psw_hash'].toString());
+
     var response = await dio.post(url, data: params);
 //    print('post:======='+response.data['message']);
     return response.data;

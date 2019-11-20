@@ -8,6 +8,9 @@ class Api{
   static const String CHECK_LOGIN = BASE_URL+'checkLogin';//验证登陆
 //
   static const String LOGOUT = BASE_URL+'logout';//退出登陆
+
+  static const String REG_USER = BASE_URL+'users';//退出登陆
+
 //
   static const String GET_USER_INFO = BASE_URL+'getUserInfo';//获取用户信息
 //

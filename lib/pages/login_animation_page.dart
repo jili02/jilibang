@@ -30,21 +30,38 @@ class LoginAnimationPage extends StatelessWidget {
     });
   }
 
+  Future<String> _regUser(LoginData data) {
+    return Future.delayed(loginTime).then((_) {
+      return DataUtils.RegUser({
+        'user_name': data.name,
+        'user_psw_hash': data.password,
+        'token': ''
+      }).then((userResult) {
+        if (userResult == null) {
+          return null;
+        } else
+          return userResult;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
-      title: '账房先生',
+      title: 'LoginTest',
       emailValidator: null,
 //      logo: 'lib/images/fighting.jpg',
 
 
       onLogin: (loginData) {
-        print('Login info');
-        print('Name: ${loginData.name}');
-        print('Password: ${loginData.password}');
+//        print('Login info');
+//        print('Name: ${loginData.name}');
+//        print('Password: ${loginData.password}');
         return _loginUser(loginData);
       },
-      onSignup: (_) => Future(null),
+      onSignup: (regData){
+        return _regUser(regData);
+      },
       onSubmitAnimationCompleted: () {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => AppHome(null)),

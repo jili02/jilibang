@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 
-//import 'package:flutter_login/flutter_login.dart';
 import '../third_part/flutter_login/lib/flutter_login.dart';
-
 import 'home.dart';
 import '../utils/data_utils.dart';
 import '../model/user.dart';
@@ -16,12 +14,13 @@ class LoginAnimationPage extends StatelessWidget {
   Duration get loginTime => Duration(milliseconds: timeDilation.ceil() * 2250);
 
   Future<String> _loginUser(LoginData data) {
+
     return Future.delayed(loginTime).then((_) {
       return DataUtils.doLogin({
         'user_name': data.name,
         'user_psw_hash': data.password,
         'token': ''
-      }).then((userResult) {//      runtimeType获取变量的类型
+      }).then((userResult) async {//      runtimeType获取变量的类型
         if (userResult.runtimeType == UserInformation) {
           return null;
         } else

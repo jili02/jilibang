@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../utils/net_utils.dart';
 import '../model/supplier.dart';
-import '../pages/login_page.dart';
 import 'package:data_tables/data_tables.dart';
 import '../model/dessert.dart';
+
 
 //产品编号	进货日期	名称	型号	单位	单价	进货数	名称简写	供货商编号	大类	中类	小类
 

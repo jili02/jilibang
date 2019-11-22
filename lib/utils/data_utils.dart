@@ -5,6 +5,8 @@ import '../model/user.dart';
 import '../api/api.dart';
 import '../model/version.dart';
 import 'package:package_info/package_info.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class DataUtils {
 //  用户注册
@@ -29,6 +31,13 @@ class DataUtils {
     try {
       if (response['success']) {
         UserInformation userInfo = UserInformation.fromJson(response['data']);
+
+        //  登录成功，把token记录下来
+        SharedPreferences preferences = await SharedPreferences.getInstance();
+        preferences.setString('user_id', userInfo.userId.toString());
+        preferences.setString('user_name', userInfo.userName);
+        preferences.setString('token',response['token']);
+
         return userInfo;
       } else {
         return response['message'];
@@ -50,20 +59,22 @@ class DataUtils {
   }
 
   // 验证登陆
-  static Future checkLogin() async {
-    var response = await NetUtils.get(Api.CHECK_LOGIN);
+  static Future<bool> checkLogin() async {
+
+//    看看本地文件有没有token
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    var localToken = preferences.getString('token');
+//  拿token去验证
+    var response = await NetUtils.get(Api.CHECK_LOGIN,{'token':localToken});
 //    print('response: $response');
     try {
       if (response['success']) {
-//        print('${response['success']}   ${response['data']}  response[succes]');
-        UserInformation userInfo = UserInformation.fromJson(response['data']);
-//        print('${response['data']} $userInfo');
-        return userInfo;
+        return true;
       } else {
-        return response['success'];
+        return false;
       }
     } catch (err) {
-      return response['message'];
+      return false;
     }
   }
 

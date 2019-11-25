@@ -1,4 +1,5 @@
 import 'dart:async' show Future;
+import 'dart:io';
 
 import './net_utils.dart';
 import '../model/user.dart';
@@ -11,8 +12,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class DataUtils {
 //  用户注册
   static Future RegUser(Map<String,dynamic> params) async {
-        print('RegUser============='+params['user_name']);
-        print('RegUser============='+params['user_psw_hash']);
+//        print('RegUser============='+params['user_name']);
+//        print('RegUser============='+params['user_psw_hash']);
 
     var response = await NetUtils.post(Api.REG_USER, params);
     try {
@@ -60,13 +61,17 @@ class DataUtils {
 
   // 验证登陆
   static Future<bool> checkLogin() async {
-
 //    看看本地文件有没有token
     SharedPreferences preferences = await SharedPreferences.getInstance();
     var localToken = preferences.getString('token');
+    if ((localToken == '') || (localToken == null)) {
+      return false;
+    }
+
+    print(Api.CHECK_LOGIN + '  =================== ''token'': ''$localToken''');
 //  拿token去验证
-    var response = await NetUtils.get(Api.CHECK_LOGIN,{'token':localToken});
-//    print('response: $response');
+    var response = await NetUtils.post(Api.CHECK_LOGIN,{'token':localToken});
+    print('===============================================response: $response');
     try {
       if (response['success']) {
         return true;

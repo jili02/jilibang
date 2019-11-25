@@ -23,7 +23,7 @@ void _setTargetPlatformForDesktop() {
 }
 
 //登录前的界面引导
-void main(){
+void main() {
   _setTargetPlatformForDesktop();
   runApp(MyApp());
 }
@@ -34,7 +34,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _hasLogin = false;  //登录
+  bool _hasLogin = false; //登录
   bool _isLoading = true; //欢迎页
   UserInformation _userInfo;
   int themeColor = 0xFFC91B3A;
@@ -45,31 +45,33 @@ class _MyAppState extends State<MyApp> {
 
 //  初始化本地数据库
 //  初始化推送
+
+    DataUtils.checkLogin().then((hasLogin) {
+      setState(() {
+        _hasLogin = hasLogin;
+      });
+
+    });
   }
 
   showWelcomePage() {
     //todo  如果是第一次登陆推出欢迎页
     //  通过本地缓存的token判断，如果已经登陆过，则直接进入主页
-    DataUtils.checkLogin().then((_hasLogin){
-      // 判断是否已经登录
-      if (_hasLogin) {
-        return AppHome(null);
-      } else {
-        return LoginAnimationPage();
-      }
-    });
+    // 判断是否已经登录
+    if (_hasLogin) {
+      print('_hasLogin True');
+      return AppHome(null);
+    } else {
+      print('_hasLogin False');
+      return LoginAnimationPage();
     }
-
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner:false,
-      home: showWelcomePage(),
-//      home:Scaffold(
-//        body: LoginPage(),
-//      ),
-
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(body: showWelcomePage()),
     );
   }
 }
